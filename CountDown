@@ -1,0 +1,52 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时</title>
+	<script type="text/javascript">
+		function countTime() {
+			var thing = "开学";
+			//获取当前时间
+			var date = new Date();
+			var now = date.getTime();
+			//设置截止时间
+			var str="2020/04/20 06:00:00";
+			var endDate = new Date(str);
+			var end = endDate.getTime();
+
+			//时间差
+			var leftTime = end-now;
+			//定义变量 d,h,m,s保存倒计时的时间
+			var d,h,m,s;
+			if (leftTime>=0) {
+				d = Math.floor(leftTime/1000/60/60/24);
+				h = Math.floor(leftTime/1000/60/60%24);
+				m = Math.floor(leftTime/1000/60%60);
+				s = Math.floor(leftTime/1000%60);
+
+				//将倒计时赋值到div中
+				document.getElementById("hard").innerHTML = "距离 "+ thing +" ["+str+"]还有:<br>";
+				document.getElementById("d").innerHTML = d+"天";
+				document.getElementById("h").innerHTML = h+"时";
+				document.getElementById("m").innerHTML = m+"分";
+				document.getElementById("s").innerHTML = s+"秒";
+				setTimeout(countTime, 1000);
+			}else{
+				document.getElementById("hard").innerHTML = "倒计时已结束";
+				document.getElementById("d").innerHTML = "";
+				document.getElementById("h").innerHTML = "";
+				document.getElementById("m").innerHTML = "";
+				document.getElementById("s").innerHTML = "";
+			}
+		}
+	</script>
+</head >
+<body onload="countTime()">
+	<div style="color:red">
+		<span id="hard">00</span>
+		<span id="d">00</span>
+		<span id="h">00</span>
+		<span id="m">00</span>
+		<span id="s">00</span>
+	</div>
+</body>
+</html>
