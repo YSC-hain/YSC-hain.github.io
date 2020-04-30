@@ -5,7 +5,6 @@
 @date 2020/03/08
 '''
 
-from django.shortcuts import render
 from sympy import simplify, solve
 
 '''
