@@ -4,12 +4,12 @@
 	<title>倒计时</title>
 	<script type="text/javascript">
 		function countTime() {
-			var thing = "开学";
+			var thing = "放暑假";
 			//获取当前时间
 			var date = new Date();
 			var now = date.getTime();
 			//设置截止时间
-			var str="2020/04/20 06:00:00";
+			var str="2020/07/04 16:00:00";
 			var endDate = new Date(str);
 			var end = endDate.getTime();
 
@@ -42,11 +42,11 @@
 </head >
 <body onload="countTime()">
 	<div style="color:red">
-		<span id="hard">00</span>
-		<span id="d">00</span>
-		<span id="h">00</span>
-		<span id="m">00</span>
-		<span id="s">00</span>
+		<span id="hard"></span>
+		<span id="d"></span>
+		<span id="h"></span>
+		<span id="m"></span>
+		<span id="s"></span>
 	</div>
 </body>
 </html>
