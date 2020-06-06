@@ -3,11 +3,16 @@
 	<meta charset="UTF-8">
 	<title>倒计时</title>
 	<script type="text/javascript">
+		function tStr(str) {
+			var time=Math.floor(str);
+			if(time < 10) return "0"+time;
+			else return time;
+		}
 		function countTime() {
 			//消息
-			var thing = "放暑假";
+			var thing = "期末考";
 			//截止时间
-			var str="2020/07/04 11:00:00";
+			var str="2020/06/29 6:50:00";
 			//时间差
 			var nowDate = new Date();
 			var endDate = new Date(str);
@@ -16,7 +21,7 @@
 			var d,h,m,s;
 			if (leftTime>=0) {
 				//将倒计时赋值到div中
-				document.getElementById("time").innerHTML = "距离 " + thing + " ["+str+"]还有:<br>" + Math.floor(leftTime/1000/60/60/24) + "天" + Math.floor(leftTime/1000/60/60%24) + "时" + Math.floor(leftTime/1000/60%60) + "分" + Math.floor(leftTime/1000%60) + "秒";
+				document.getElementById("time").innerHTML = "距离 " + thing + " ["+str+"]还有:<br>" + Math.floor(leftTime/1000/60/60/24) + "天" + tStr(leftTime/1000/60/60%24) + "时" + tStr(leftTime/1000/60%60) + "分" + tStr(leftTime/1000%60) + "秒";
 				setTimeout(countTime, 1000);
 			}else{
 				document.getElementById("time").innerHTML = "倒计时已结束";
