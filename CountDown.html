@@ -38,3 +38,50 @@
 	</div>
 </body>
 </html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时</title>
+	<script type="text/javascript">
+		__version__= 1.1;
+		function tStr(str) {
+			var time=Math.floor(str);
+			if(time < 10) return "0"+time;
+			else return time;
+		}
+		function countTime() {
+			//消息
+			var thing = "期末考";
+			document.getElementById("head").innerHTML=thing+" 倒计时<br>";
+			//开始时间
+			var start="2020/02/10 6:50:00";
+			//截止时间
+			var str="2020/06/29 6:50:00";
+			//时间差
+			var startDate = new Date(start);
+			var nowDate = new Date();
+			var endDate = new Date(str);
+			var leftTime = endDate.getTime() - nowDate.getTime();
+			var allTime = endDate.getTime() - startDate.getTime();
+			//定义变量 d,h,m,s保存倒计时的时间
+			var d,h,m,s;
+			if (leftTime>=0) {
+				//将倒计时赋值到div中
+				document.getElementById("time").innerHTML = Math.floor(leftTime/1000/60/60/24) + "天" + tStr(leftTime/1000/60/60%24) + "时" + tStr(leftTime/1000/60%60) + "分" + tStr(leftTime/1000%60) + "秒";
+				document.getElementById("perc").innerHTML = Math.floor(leftTime/allTime*Math.pow(10,8))/Math.pow(10,8) + "%";
+				setTimeout(countTime, 1000);
+			}else{
+				document.getElementById("time").innerHTML = "0天00时00分00秒";
+				document.getElementById("perc").innerHTML = "0%";
+			}
+		}
+	</script>
+</head >
+<body onload="countTime()">
+	<div style="color:red;text-align:center;z-index: 1;font-size: 11vw">
+		<span id="head"></span>
+		<span id="time"></span>
+		<span id="perc"></span>
+	</div>
+</body>
+</html>
