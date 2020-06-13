@@ -1,9 +1,27 @@
-<html>
 <head>
 	<meta charset="UTF-8">
 	<title>倒计时</title>
 	<script type="text/javascript">
-		__version__= 1.1;
+		__version__= 1.2;
+		
+		function getPar(par) {
+			//获取当前URL
+			var local_url = decodeURIComponent(document.location.href);
+			//获取要取得的get参数位置
+			var get = local_url.indexOf(par + "=");
+			if(get == -1) {
+				return "";
+			}
+			//截取字符串
+			var get_par = local_url.slice(par.length + get + 1);
+			//判断截取后的字符串是否还有其他get参数
+			var nextPar = get_par.indexOf("&");
+			if(nextPar != -1) {
+				get_par = get_par.slice(0, nextPar);
+			}
+			return get_par;
+		}
+		
 		function tStr(str) {
 			var time=Math.floor(str);
 			if(time < 10) return "0"+time;
@@ -11,12 +29,12 @@
 		}
 		function countTime() {
 			//消息
-			var thing = "期末考";
+			var thing = getPar("th");
 			document.getElementById("head").innerHTML=thing+" 倒计时<br>";
 			//开始时间
-			var start="2020/02/10 6:50:00";
+			var start=getPar("st"); //2020/02/10 6:50:00
 			//截止时间
-			var str="2020/06/29 6:50:00";
+			var str=getPar("et"); //2020/06/29 6:50:00
 			//时间差
 			var startDate = new Date(start);
 			var nowDate = new Date();
@@ -28,11 +46,11 @@
 			if (leftTime>=0) {
 				//将倒计时赋值到div中
 				document.getElementById("time").innerHTML = Math.floor(leftTime/1000/60/60/24) + "天" + tStr(leftTime/1000/60/60%24) + "时" + tStr(leftTime/1000/60%60) + "分" + tStr(leftTime/1000%60) + "秒";
-				document.getElementById("perc").innerHTML = Math.floor(leftTime/allTime*Math.pow(10,8))/Math.pow(10,6) + "%";
+				document.getElementById("perc").innerHTML = "剩余"+Math.floor(leftTime/allTime*Math.pow(10,8))/Math.pow(10,6) + "%";
 				setTimeout(countTime, 1000);
 			}else{
 				document.getElementById("time").innerHTML = "0天00时00分00秒";
-				document.getElementById("perc").innerHTML = "0%";
+				document.getElementById("perc").innerHTML = "剩余 0%";
 			}
 		}
 	</script>
