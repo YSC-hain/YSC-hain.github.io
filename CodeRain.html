@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset="UTF-8">
+	<title>Code Rain - YSChain</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+</head>
+<body>
+<canvas id='canvas'></canvas>
+<style type='text/css'>
+	body{margin: 0; padding: 0; overflow: hidden;}
+</style>
+<script>
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+
+	canvas.height = window.innerHeight - 4; //边界处理
+	canvas.width = window.innerWidth;
+
+	var texts = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzāáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜüêɑńňɡåàáâãèéêëðìíîïöøòóôõñùúûüýþ'.split('');
+
+	var fontSize = 10;
+	var columns = canvas.width/fontSize;
+	// 用于计算输出文字时坐标，所以长度即为列数
+	var drops = [];
+	//初始值
+	for(var x = 0; x < columns; x++){
+		drops[x] = 1;
+	}
+
+	function draw(){
+		//让背景逐渐由透明到不透明
+		ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+		//文字颜色
+		ctx.fillStyle = '#0F0';
+		ctx.font = fontSize + 'px arial';
+		//逐行输出文字
+		for(var i = 0; i < drops.length; i++){
+			var text = texts[Math.floor(Math.random()*texts.length)];
+			ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+
+			if(drops[i]*fontSize > canvas.height || Math.random() > 0.95){
+				var tmp = Math.random();
+				drops[i] = Math.floor((tmp > 0.175 ? tmp - 0.175 : tmp) * (window.innerHeight/fontSize));
+			}
+
+			drops[i]++;
+		}
+	}
+
+	setInterval(draw, 33);
+</script>
+<div style='left: 0;position: fixed;bottom: 0;width: 100%;z-index: 100;text-align: center;color: rgba(255,255,255,0.5)'>作者 YSChain</div>
+</body>
+</html>
