@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+	<meta charset='UTF-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'>
 	<title>Code Rain - YSChain</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<script src='watermark.min.js'></script>
 </head>
 <body>
+
 <canvas id='canvas'></canvas>
-<style type='text/css'>
+<style>
 	body{margin: 0; padding: 0; overflow: hidden;}
 </style>
 <script>
+	watermark({'A': 0.7});
+
 	var canvas = document.getElementById('canvas');
 	var ctx = canvas.getContext('2d');
 
@@ -19,7 +23,7 @@
 
 	var texts = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzāáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜüêɑńňɡåàáâãèéêëðìíîïöøòóôõñùúûüýþ'.split('');
 
-	var fontSize = 10;
+	var fontSize = 16;
 	var columns = canvas.width/fontSize;
 	// 用于计算输出文字时坐标，所以长度即为列数
 	var drops = [];
@@ -33,7 +37,8 @@
 		ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
 		//文字颜色
-		ctx.fillStyle = '#0F0';
+		if(Math.random() > 0.99) ctx.fillStyle = '#F00' //出现红字
+		else ctx.fillStyle = '#0F0';
 		ctx.font = fontSize + 'px arial';
 		//逐行输出文字
 		for(var i = 0; i < drops.length; i++){
@@ -51,6 +56,6 @@
 
 	setInterval(draw, 33);
 </script>
-<div style='left: 0;position: fixed;bottom: 0;width: 100%;z-index: 100;text-align: center;color: rgba(255,255,255,0.5)'>作者 YSChain</div>
+
 </body>
 </html>
