@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='UTF-8'>
+	<meta name='viewport' content='width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'/>
+	<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+	<style>
+		#word{
+			display: none;
+			color: #778899;
+			text-align: center;
+			z-index: 1;
+			font-size: 8vw;
+			line-height: 600px;
+		}
+	</style>
+</head>
+<body>
+	<div id="word"></div>
+	<script>
+		var winHeight;
+		if (window.innerHeight)
+			winHeight = window.innerHeight;
+		else if ((document.body) && (document.body.clientHeight))
+			winHeight = document.body.clientHeight;
+
+		document.getElementById('word').style['line-height'] = (winHeight * ( 1 - 0.08) ) + 'px';
+		$(document).ready(function(){
+			var poem = new Array('《午休》  作者: 杨子坤', '午休中有令人头疼的作业', '亦有人不头疼', '不头疼的人只有一种人——', '那就是死人', '故至今提起作业', '无一不头疼', '一间教室', '四十学子', '九盏灯', '就这样过着', '均匀的呼吸', '凝固的空气', '初冬已颇冷', '心中却泛起一层层', '滚烫的热浪', '教室中寂静无声', '细细地听', '似乎又有怒吼声', '却一个字也听不懂', '再细细地听', '是学子心中的愤怒', '作业照例又写不完了', '如此多的作业从来没见过', '看着日日见的题', '像牛毛  像花针  像细丝', '密密的斜织在书上', '心中的恐惧', '正被不断放大', '练习本上白茫茫一片', '像冰雪笼罩着的阿拉斯加', '绝望之中', '我只好紧紧地握着笔', '像一匹坠入悬崖的马', '做着最后的挣扎', '(完)');
+
+			const SLEEP_MILLISECONDS = 1000 * 3;
+			for (var i = 0; i < poem.length; i++) {
+				var word = poem[i];
+				(function(word) {
+					setTimeout(function() {
+						$("#word").text(word);
+						$("#word").fadeIn(1000).fadeOut(2000);
+					}, i * SLEEP_MILLISECONDS);
+				})(word);
+			}
+		});
+	</script>
+</body>
+</html>
