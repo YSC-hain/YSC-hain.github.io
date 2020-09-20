@@ -3,6 +3,7 @@
 <head>
 	<meta charset='UTF-8'>
 	<meta name='viewport' content='width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'/>
+	<title>午休</title>
 	<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 	<style>
 		#word{
@@ -38,6 +39,8 @@
 					}, i * SLEEP_MILLISECONDS);
 				})(word);
 			}
+
+			setTimeout(function() { location.reload(); } , poem.length * SLEEP_MILLISECONDS + 1);
 		});
 	</script>
 </body>
